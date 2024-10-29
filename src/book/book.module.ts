@@ -10,11 +10,11 @@ import { BookMiddleware } from "./book.middleware";
   providers: [BookService],
 })
 
-export class BookModule implements NestModule {
+export class BookModule  {
 
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(BookMiddleware)
-      .forRoutes(BookController)
-  }
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer
+  //     .apply(BookMiddleware)
+  //     .forRoutes(BookController)
+  // }
 }

@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseBoolPipe, ParseIntPipe, Post, Put, ValidationPipe } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { BookDto } from "./data/book.dto";
+import { BookPipe } from "./pipes/book.pipe";
 
 
 
@@ -21,8 +22,12 @@ addBookReturn():string{
   return 'This api will add new book'
 }
 
-
-
+@Get("/:id")
+findBookById(@Param("id", ParseIntPipe) id:number):string{
+  console.log(id, typeof(id));
+  
+  return 'book by id'
+}
 
 
 
@@ -42,7 +47,7 @@ addBookReturn():string{
   }
 
   @Post('/add')
-  addBook(@Body() book:BookDto):BookDto{
+  addBook(@Body( new ValidationPipe()) book:BookDto):BookDto{
     return this.bookService.addBookService(book)
   }
 

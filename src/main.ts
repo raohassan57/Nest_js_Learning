@@ -8,15 +8,11 @@ function globalMiddleWareOne(req: Request, res: Response, next:NextFunction  ) {
   next()
 }
 
-function globalMiddleWareTwo(req: Request, res: Response, next:NextFunction  ) {
-  console.log('this is the global middleware number 2');
-  next()
-}
 
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(RootModule, { abortOnError: false });
-  app.use(globalMiddleWareOne, globalMiddleWareTwo)
+  app.use(globalMiddleWareOne)
   await app.listen(3000);
 }
 bootstrap();
