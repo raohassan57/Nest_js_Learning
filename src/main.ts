@@ -1,8 +1,22 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { RootModule } from './root.module';
+import { NestExpressApplication } from '@nestjs/platform-express/interfaces';
+import { Request, Response, NextFunction } from 'express';
+
+function globalMiddleWareOne(req: Request, res: Response, next:NextFunction  ) {
+  console.log('this is the global middleware number 1');
+  next()
+}
+
+function globalMiddleWareTwo(req: Request, res: Response, next:NextFunction  ) {
+  console.log('this is the global middleware number 2');
+  next()
+}
+
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(RootModule, { abortOnError: false });
+  app.use(globalMiddleWareOne, globalMiddleWareTwo)
   await app.listen(3000);
 }
 bootstrap();
