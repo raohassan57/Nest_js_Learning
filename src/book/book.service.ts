@@ -24,9 +24,9 @@ updateBookService(book:BookDto):BookDto{
 // delte book
 
 deleteBookService(bookId:string):string{
-  let bookIndex = this.books.findIndex(x => x.id == bookId)
-  this.books.splice(bookIndex,1)
-  return `The book with this id ${bookId} has been deleted`
+  // let bookIndex = this.books.findIndex(x => x.id == bookId)
+
+  return `The book with this id has been deleted`
 }
 
 // get All Book

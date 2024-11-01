@@ -13,12 +13,15 @@ export class PassportLocalStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  validate(username: string, password: string): User | String {
+  validate(username: string, password: string) {
 
     const user : User = this.userService.getUserByName(username);
 
     if (user && user.password === password) {
-      return user;
+      const {password, ...result} = user;
+      // console.log(result);
+      
+      return result;
     }else {
       throw new UnauthorizedException
     }

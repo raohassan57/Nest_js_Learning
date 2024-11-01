@@ -1,24 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './user.entity';
+import { role, users } from 'src/auth/constants';
+
+
 
 @Injectable()
 export class UserService {
 
-  public users : User[] = [{
-    username: 'User1',
-    password: "admin",
-    email: "user1@gmail.com"
-  },
-  {
-    username: 'User2',
-    password: "admin",
-    email: "user2@gmail.com"
-  },
-  {
-    username: 'User3',
-    password: "admin",
-    email: "user3@gmail.com"
-  }]
+  private users : User[] = users;
 
 
 getUserByName (username: string): User {

@@ -13,6 +13,6 @@ import { Request, Response, NextFunction } from 'express';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(RootModule, { abortOnError: false });
   // app.use(globalMiddleWareOne)
-  await app.listen(3000);
+  await app.listen(process.env.PORT  ||3000);
 }
 bootstrap();
